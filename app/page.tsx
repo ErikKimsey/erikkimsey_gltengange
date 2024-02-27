@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import VideoRecorder from "./VideoRecorder";
+import VideoRecorder from "./scrapped_components/VideoRecorder";
 import VideoList, { Performance } from "./VideoList";
 import NewPerformance from "./NewPerformance";
 import { createClient } from "@supabase/supabase-js";
-import WebcamRecorder from './WebcamRecorder';
 
 // Create a single supabase client for interacting with your database
 const supabaseUrl = "https://bzptobpslgnpwelhfors.supabase.co";
@@ -23,8 +22,6 @@ import {
     Videocam,
 } from "@mui/icons-material";
 
-const mimeType = "audio/webm";
-
 export async function Videos() {
     const supabase = createClient(supabaseUrl, supabaseKey);
     const { data: notes } = await supabase.from("videos").select();
@@ -32,7 +29,6 @@ export async function Videos() {
 }
 
 export default function Home() {
-
     const [vidConstraints, setVidConstraints] = useState({});
 
     useEffect(() => {
@@ -41,7 +37,6 @@ export default function Home() {
         }
         setVidConstraints(constraints);
     }, [])
-
 
     /** App Flow: */
     // 1. Get recordings from persistent storage,
@@ -73,10 +68,13 @@ export default function Home() {
 
     return (
         <main className="flex flex-col items-center max-w-[600px] w-full min-w-96 p-6">
+
             {vidConstraints && <NewPerformance constraints={vidConstraints} />}
-            {/* Video playback component */}
-            {/* <Performance /> */}
-            {/* <Videos /> */}
+
+            {/* List of prev performance recordings, pulled from DB */}
+            <VideoList />
+
+
             {/* <div className="flex menu">
         <button className="hover:text-pink-400 active:text-pink-600 hover:scale-125">
           <AddCircle />
@@ -94,8 +92,6 @@ export default function Home() {
           <Videocam />
         </button>
       </div> */}
-            <NewPerformance />
-            <VideoList />
         </main>
     );
 }

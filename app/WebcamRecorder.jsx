@@ -3,17 +3,16 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AddCircle, Delete, Edit } from "@mui/icons-material";
 import Webcam from "react-webcam";
 
-// video/mp4; codecs="avc1.424028, mp4a.40.
 const mimeType = "video/webm;codecs=vp8";
 
-export default function WebcamRecorder({ constraints }) {
+export default function WebcamRecorder({ constraints, handleRecordedVideo }) {
 
     const webcamRef = useRef(null);
     const mediaRecorderRef = useRef(null);
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
 
-
+    // 
     const handleStartRecord = useCallback(() => {
         setCapturing(true);
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
@@ -26,6 +25,7 @@ export default function WebcamRecorder({ constraints }) {
         mediaRecorderRef.current.start();
     }, [webcamRef, setCapturing, mediaRecorderRef]);
 
+    //
     const handleDataAvailable = useCallback(
         ({ data }) => {
             if (data.size > 0) {
@@ -35,16 +35,21 @@ export default function WebcamRecorder({ constraints }) {
         [setRecordedChunks]
     );
 
+    //
     const handleStopRecord = useCallback(() => {
         mediaRecorderRef.current.stop();
         setCapturing(false);
     }, [mediaRecorderRef, webcamRef, setCapturing]);
 
+    //
     const handleDownload = useCallback(() => {
         if (recordedChunks.length) {
             const blob = new Blob(recordedChunks, {
                 type: "video/webm"
             });
+            handleRecordedVideo(blob);
+
+            // 
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             document.body.appendChild(a);
@@ -67,7 +72,7 @@ export default function WebcamRecorder({ constraints }) {
                 <button onClick={handleStartRecord}>Start Capture</button>
             )}
             {recordedChunks.length > 0 && (
-                <button onClick={handleDownload}>Download</button>
+                <button onClick={handleDownload}>Keep Recording</button>
             )}
         </div>
     )
