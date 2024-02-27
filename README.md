@@ -2,10 +2,14 @@
 ## Erik Kimsey
 ## GLTEngage UI Engineer Technical Challenge
 
-Hello Andy and Aliaks,
+Hello Andy and Aliaks!
+How are you?
 There was a 2-3 hour limit that I inadvertently surpassed, spending a lot of time simply reading about things like the Media Recorder/Stream API, learning about datatypes, and making decisions regarding persisting data (locally and hosted DB). 
 
-I've decided on Nextjs for frontend framework.  The issue there was MediaRecorder required the "window" object, of the browser, in order to work.  Taillwind for styling.  After deliberation on persisting data, 
+I've decided on Nextjs for frontend framework.  The issue there was MediaRecorder required the "window" object, of the browser, in order to work.  Taillwind for styling.  After deliberation on persisting data, I would have implemented localstorage or IndexedDB.  As for backend, I was planning to host video data on Supabase.
+
+Thanks!
+Erik Kimsey
 
 ### UI
 **Tools used (or potentially used):**
@@ -45,7 +49,7 @@ MediaRecorder API / MediaStream API, via ["Webcam-React" npm package](https://ww
 #### <li>create functionality to push new recording data (recording title, recording blob, timestamp) from the NewPerformance component to Context state</li>
 #### <li>subsequently, create functionality that triggers API call to post new recording data to DB. </li>
 #### <li>REST call to pull user's updated/previous recordings </li>
-#### <li>  </li>
+#### <li> ... </li>
 #### </ul>
 
 
@@ -55,15 +59,14 @@ MediaRecorder API / MediaStream API, via ["Webcam-React" npm package](https://ww
 #### <li>Implement the "NewPerformance" component in a modal(?).</li>
 #### <li>Replace all non-styled components with Material UI (ie, icons, buttons)</li>
 #### <li>Provide a placeholder image for NewPerformance video component.</li>
-#### <li>Provide a placeholder image for NewPerformance video component.</li>
+### <li> ... </li>
 #### </ul>
 
 
 ### 3. Other frontend:
 #### <ul>
 #### <li>Finish setting up dynamic state (i.e., via Context API) in all components (e.g., previous recording list-items: title, data, video thumbnail, video duration, and connect items' play/edit/delete buttons to subsequent functionality)</li>
-#### <li> Finish  </li>
-#### <li>  </li>
+#### <li> ... </li>
 #### </ul>
 
 
